@@ -32,7 +32,22 @@ export default class App extends React.Component {
   }
 
   _sendEventToNative() {
+    CustomModule.doCallbackTask(11, (name, email, age) => {
+      console.log("AAAA", name + "~" + email + "~" + age)
+    },
+      (err) => {
+        console.log("AAAA", err)
+      }
+    )
+  }
 
+  async _sendEventToNativePromise() {
+    try {
+      let result = await CustomModule.doPromiseTask(11);
+      console.log("AAAA", result);
+    } catch (error) {
+      console.log("AAAA", error);
+    }
   }
 
   async componentDidMount() {
@@ -41,11 +56,16 @@ export default class App extends React.Component {
     })
   }
 
+
   render() {
 
     return (
 
       <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+
+        <Button
+          onPress={this._sendEventToNativePromise}
+          title="Send Event To Native Promise" />
 
         <Button
           onPress={this._sendEventToNative}

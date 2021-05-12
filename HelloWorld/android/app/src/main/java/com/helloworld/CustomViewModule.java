@@ -5,7 +5,11 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -41,15 +45,6 @@ public class CustomViewModule extends SimpleViewManager<CustomView> {
     public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
         Log.e("RN_TAG", "==================Register Native Click================");
         return MapBuilder.<String, Object>builder().put("nativeClick", MapBuilder.of("registrationName", "onClick")).build();
-    }
-
-
-    public void doCallbackTask(int aNumber, Callback successCallback, Callback failedCallback){
-        try {
-
-        }catch (Exception err){
-
-        }
     }
 
 }
