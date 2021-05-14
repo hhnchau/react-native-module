@@ -26,7 +26,8 @@ public class CustomModulePackage implements ReactPackage {
     public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactContext) {
 
         return Arrays.<ViewManager>asList(
-                new CustomViewModule()
+                new CustomViewModule(),
+                new CustomPlayerModule()
         );
     }
 }

@@ -14,7 +14,8 @@ import {
   DeviceEventEmitter
 } from 'react-native';
 
-import CustomViewModule from './CustomViewModule'
+import CustomViewModule from './CustomViewModule';
+import CustomPlayerModule from './CustomPlayerModule';
 
 
 
@@ -62,6 +63,11 @@ export default class App extends React.Component {
     return (
 
       <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+
+        <CustomPlayerModule style={{
+          width: '100%',
+          height: '30%',
+        }} />
 
         <Button
           onPress={this._sendEventToNativePromise}
