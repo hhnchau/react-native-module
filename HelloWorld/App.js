@@ -10,6 +10,8 @@ import React from 'react';
 import {
   Button,
   View,
+  UIManager,
+  findNodeHandle,
   NativeModules,
   DeviceEventEmitter
 } from 'react-native';
@@ -18,12 +20,14 @@ import CustomViewModule from './CustomViewModule';
 import CustomPlayerModule from './CustomPlayerModule';
 
 
-
 const { CustomModule } = NativeModules;
 
 
 
 export default class App extends React.Component {
+
+  viewRef = React.createRef();
+
   _onPressButton() {
     CustomModule.show();
   }
@@ -57,17 +61,43 @@ export default class App extends React.Component {
     })
   }
 
+  _start() {
+
+  }
+
+  _stop() {
+    console.log('Stop....', this.viewRef);
+    // UIManager.dispatchViewManagerCommand(
+    //   findNodeHandle(this.viewRef.current),
+    //   "0", []
+    // );
+  }
+
 
   render() {
 
     return (
 
+
       <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
 
-        <CustomPlayerModule style={{
-          width: '100%',
-          height: '30%',
-        }} />
+
+        <CustomPlayerModule
+          style={{ width: '100%', height: '30%' }}
+          uid={{ "uid": "AAZ9S6VZTBBA12RG111A", "pw": "j9ofis" }}
+        />
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', flexDirection: 'row' }}>
+          <Button
+            style={{ flex: 1 }}
+            onPress={this._start}
+            title="Start" />
+
+          <Button
+            style={{ flex: 1 }}
+            onPress={this._stop}
+            title="Stop" />
+        </View>
 
         <Button
           onPress={this._sendEventToNativePromise}
